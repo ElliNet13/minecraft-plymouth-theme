@@ -12,8 +12,12 @@ FONTCONFIG_PATH=${FONTCONFIG_PATH:-${FONT_PATH}/conf.d}
 # -----------------------------
 # Check dependencies
 # -----------------------------
-if ! command -v magick >/dev/null 2>&1; then
-    echo "Error: ImageMagick ('magick' command) is required."
+if command -v magick >/dev/null 2>&1; then
+    IMAGEMAGICK_CMD="magick"
+elif command -v convert >/dev/null 2>&1; then
+    IMAGEMAGICK_CMD="convert"
+else
+    echo "Error: ImageMagick ('magick' or 'convert' command) is required."
     exit 1
 fi
 
@@ -41,13 +45,13 @@ sudo cp -v ./plymouth/progress_box.png "${PLYMOUTH_THEME_BASEDIR}/"
 echo "Generating scaled images..."
 for j in "padlock" "bar"; do
     for i in $(seq 1 6); do
-        magick ./plymouth/${j}.png -interpolate Nearest -filter point -resize "$i"00% \
+        $IMAGEMAGICK_CMD ./plymouth/${j}.png -interpolate Nearest -filter point -resize "$i"00% \
             "${PLYMOUTH_THEME_BASEDIR}/${j}-${i}.png"
     done
 done
 
 for i in $(seq 1 12); do
-    magick ./plymouth/dirt.png \
+    $IMAGEMAGICK_CMD ./plymouth/dirt.png \
         -channel R -evaluate multiply 0.25 \
         -channel G -evaluate multiply 0.25 \
         -channel B -evaluate multiply 0.25 \
