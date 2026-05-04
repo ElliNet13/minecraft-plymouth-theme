@@ -37,7 +37,6 @@ If you are using Linux mint do this instead:
     git clone https://github.com/ElliNet13/minecraft-plymouth-theme.git
     cd minecraft-plymouth-theme
     sudo ./installmint.sh
-    plymouth-set-default-theme -R mc
 ```
 
 Reboot, and you'll have the boot screen installed.
