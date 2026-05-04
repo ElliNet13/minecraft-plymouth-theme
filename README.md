@@ -4,10 +4,10 @@ Minecraft Plymouth theme
 A minecraft loading screen styled Plymouth theme, inspired by
 [MineGRUB](https://github.com/Lxtharia/minegrub-theme).
 
-Mostly created as a silly joke, it's meant to be used together
+Mostly created as a cool, it's meant to be used together
 with MineGRUB for the most authentic Minecraft boot experiece(tm).
 
-But it also can be used alone, I am not here to judge.
+But it also can be used alone, I am here to judge.
 
 
 ### Screenshots
@@ -25,10 +25,18 @@ First, install ``git``, ``plymouth`` and ``imagemagick``. On Fedora, also instal
 
 And do the following:
 
-```
-    git clone https://github.com/nikp123/minecraft-plymouth-theme
+```bash
+    git clone https://github.com/ElliNet13/minecraft-plymouth-theme.git
     cd minecraft-plymouth-theme
     sudo ./install.sh
+    plymouth-set-default-theme -R mc
+```
+
+If you are using Linux mint do this instead:
+```bash
+    git clone https://github.com/ElliNet13/minecraft-plymouth-theme.git
+    cd minecraft-plymouth-theme
+    sudo ./installmint.sh
     plymouth-set-default-theme -R mc
 ```
 
@@ -39,6 +47,7 @@ Reboot, and you'll have the boot screen installed.
 
 So far I've tested this on:
 Arch Linux, Debian, Void Linux and NixOS.
+You can install on Linux mint using installmint.sh
 
 Other users have reportedly tested this on Ubuntu and Fedora, but I can't make any statements about how they work there.
 
@@ -51,6 +60,7 @@ So far:
   - ``mkinitcpio``
 
 ...initrd systems are supported. But adding others should be fairly simple.
+
 
 
 #### Sidenotes
