@@ -38,13 +38,19 @@ Reboot, and you'll have the boot screen installed.
 ### Distros and whatnot?
 
 So far I've tested this on:
-Arch Linux, Void Linux and NixOS. 
+Arch Linux, Debian, Void Linux and NixOS.
 
 Other users have reportedly tested this on Ubuntu and Fedora, but I can't make any statements about how they work there.
 
 Other distros *might* work but it would require that their initrd generator is aware of plymouth and this theme, and pulls in the correct files.
 
-So far both ``mkinitcpio`` and ``dracut`` initrd systems are supported. But adding others should be fairly simple.
+So far:
+
+  - ``dracut``
+  - ``initramfs-tools``
+  - ``mkinitcpio``
+
+...initrd systems are supported. But adding others should be fairly simple.
 
 
 #### Sidenotes

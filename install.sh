@@ -9,13 +9,16 @@ IS_MKINITCPIO=${IS_MKINITCPIO:=$(
     ! [ -d /etc/mkinitcpio.conf.d ]
     echo $?
 )}
+IS_INITRAMFSTOOLS=${IS_INITRAMFSTOOLS:=$(
+    ! [ -d /usr/share/initramfs-tools ]
+    echo $?
+)}
 PLYMOUTH_THEME_BASEDIR=${PLYMOUTH_THEME_BASEDIR:=/usr/share/plymouth/themes/mc}
 FONTS_BASEDIR=${FONTS_BASEDIR:=/usr/share/fonts}
 FONT_PATH=${FONT_PATH:=/etc/fonts}
 FONTCONFIG_PATH=${FONTCONFIG_PATH:=${FONT_PATH}/conf.d}
 
 # Check for ImageMagick
-
 if ! type -fp magick >/dev/null 2>&1; then
     echo "Please install ImageMagick ('magick' command)"
     exit 1
@@ -94,4 +97,10 @@ if [ "$IS_MKINITCPIO" -eq 1 ]; then
     # Install mkinitcpio config
     install -v -d -m 0755 /etc/mkinitcpio.conf.d
     install -v -m 0644 ./mkinitcpio/* /etc/mkinitcpio.conf.d/99-minecraft-plymouth.conf
+fi
+
+if [ "$IS_INITRAMFSTOOLS" -eq 1 ]; then
+    # Install initramfs-tools files (Debian)
+    install -v -d -m 0755 /usr/share/initramfs-tools/hooks
+    install -v -m 0755 ./initramfs-tools/* /usr/share/initramfs-tools/hooks/minecraft-font-hook
 fi

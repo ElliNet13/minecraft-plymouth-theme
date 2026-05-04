@@ -1,0 +1,20 @@
+#!/bin/sh
+PREREQ="console-setup" # Optional, but a sensible prerequisite if it's a console font
+prereqs()
+{
+   echo "$PREREQ"
+}
+
+case $1 in
+prereqs)
+   prereqs
+   exit 0
+   ;;
+esac
+
+. /usr/share/initramfs-tools/hook-functions
+
+# Copy the font file into the initramfs
+# The 'datadir' function resolves paths to the initramfs temporary directory
+# Replace the source path with your font's location
+copy_file data /usr/share/fonts/OTF/Minecraft.otf /usr/share/fonts/OTF/Minecraft.otf
